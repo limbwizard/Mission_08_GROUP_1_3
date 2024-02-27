@@ -9,7 +9,6 @@ namespace Mission_08_GROUP_1_3.Controllers
         
 
 
-
         private TaskEntryContext _context;
         public HomeController(TaskEntryContext temp)
         {
@@ -25,19 +24,19 @@ namespace Mission_08_GROUP_1_3.Controllers
 
 
         [HttpGet]
-        public IActionResult TaskEntry()
+        public IActionResult AddEditTask()
         {
             // FIXME
             ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
-            return View("TaskEntry", new Task());
+            return View("AddEditTask", new Task());
         }
 
 
         [HttpPost]
-        public IActionResult TaskEntry(Task response)
+        public IActionResult AddEditTask(Task response)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +57,7 @@ namespace Mission_08_GROUP_1_3.Controllers
             return View("Confirmation", response);
         }
 
-        public IActionResult TaskList()
+        public IActionResult Index()
         {
             //linq
             var tasks = _context.Tasks
@@ -75,7 +74,12 @@ namespace Mission_08_GROUP_1_3.Controllers
         public IActionResult Edit(int id)
         {
             var recordToEdit = _context.Tasks
-                .Single(x => x.MovieId == id);
+                .Single(x => x.TaskId == id);
+
+            // FIXME
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
 
             return View("TaskEntry", recordToEdit);
         }
@@ -86,14 +90,14 @@ namespace Mission_08_GROUP_1_3.Controllers
             _context.Update(updatedInfo);
             _context.SaveChanges();
 
-            return RedirectToAction("TaskList");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
             var recordToDelete = _context.Tasks
-                .Single(x => x.MovieId == id);
+                .Single(x => x.TaskId == id);
 
             return View(recordToDelete);
 
@@ -103,10 +107,10 @@ namespace Mission_08_GROUP_1_3.Controllers
         [HttpPost]
         public IActionResult Delete(Task task)
         {
-            _context.Movies.Remove(task);
+            _context.Tasks.Remove(task);
             _context.SaveChanges();
 
-            return RedirectToAction("TaskList");
+            return RedirectToAction("Index");
         }
 
     }
