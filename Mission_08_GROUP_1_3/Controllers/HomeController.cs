@@ -11,8 +11,8 @@ namespace Mission_08_GROUP_1_3.Controllers
         
 
 
-        private TaskListContext _context;
-        public HomeController(TaskListContext temp)
+        private TaskContext _context;
+        public HomeController(TaskContext temp)
         {
             _context = temp;
         }
