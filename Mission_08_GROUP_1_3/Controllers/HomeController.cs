@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Mission_08_GROUP_1_3.Models;
+
 /*using Mission_08_GROUP_1_3.Models;*/
 using System.Diagnostics;
 
@@ -9,18 +11,17 @@ namespace Mission_08_GROUP_1_3.Controllers
         
 
 
-        private TaskEntryContext _context;
-        public HomeController(TaskEntryContext temp)
+        private TaskListContext _context;
+        public HomeController(TaskListContext temp)
         {
             _context = temp;
         }
 
 
-
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
 
         [HttpGet]
@@ -31,12 +32,12 @@ namespace Mission_08_GROUP_1_3.Controllers
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
-            return View("AddEditTask", new Task());
+            return View("AddEditTask", new TaskList());
         }
 
 
         [HttpPost]
-        public IActionResult AddEditTask(Task response)
+        public IActionResult AddEditTask(TaskList response)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +86,7 @@ namespace Mission_08_GROUP_1_3.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Task updatedInfo)
+        public IActionResult Edit(TaskList updatedInfo)
         {
             _context.Update(updatedInfo);
             _context.SaveChanges();
@@ -105,9 +106,9 @@ namespace Mission_08_GROUP_1_3.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(Task task)
+        public IActionResult Delete(TaskList tasklist)
         {
-            _context.Tasks.Remove(task);
+            _context.Tasks.Remove(tasklist);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
