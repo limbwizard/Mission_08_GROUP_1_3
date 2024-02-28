@@ -9,7 +9,7 @@ using Mission_08_GROUP_1_3.Models;
 
 namespace Mission_08_GROUP_1_3.Migrations
 {
-    [DbContext(typeof(TaskListContext))]
+    [DbContext(typeof(TaskContext))]
     partial class TaskListContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

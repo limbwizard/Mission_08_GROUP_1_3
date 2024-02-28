@@ -6,10 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<TaskListContext>(options =>
+builder.Services.AddDbContext<TaskContext>(options =>
 {
     options.UseSqlite(builder.Configuration["ConnectionStrings:TaskConnections"]);
 });
+
+// Interface
+builder.Services.AddScoped<ITaskRepository, EFTaskRepository>();
 
 
 var app = builder.Build();
