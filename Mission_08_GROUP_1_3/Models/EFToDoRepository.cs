@@ -1,32 +1,32 @@
 ﻿
 namespace Mission_08_GROUP_1_3.Models
 {
-    public class EFTaskRepository : ITaskRepository
+    public class EFToDoRepository : IToDoRepository
     {
-        private TaskContext _context;
-        public EFTaskRepository(TaskContext context) 
+        private ToDoContext _context;
+        public EFToDoRepository(ToDoContext context) 
         {
             _context = context;     
         }
 
-        public List<Task> Tasks => _context.Tasks.ToList();
+        public List<ToDo> ToDos => _context.ToDos.ToList();
 
 
-        public void AddTask(Task task)
+        public void AddTask(ToDo task)
         {
             //go to context file and add whatever was passed into me
             _context.Add(task);
             _context.SaveChanges();
         }
 
-        public void EditTask(Task task)
+        public void EditTask(ToDo task)
         {
             //go to context file and add whatever was passed into me
             _context.Update(task);
             _context.SaveChanges();
         }
 
-        public void DeleteTask(Task task)
+        public void DeleteTask(ToDo task)
         {
             //go to context file and add whatever was passed into me
             _context.Remove(task);

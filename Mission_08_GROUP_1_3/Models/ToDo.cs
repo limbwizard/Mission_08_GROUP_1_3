@@ -2,7 +2,7 @@
 
 namespace Mission_08_GROUP_1_3.Models
 {
-    public class Task
+    public class ToDo
     {
         [Key]
         public int TaskId { get; set; }
