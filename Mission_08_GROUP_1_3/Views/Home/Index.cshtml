@@ -2,7 +2,82 @@
     ViewData["Title"] = "Quadrants";
 }
 
-<div class="container" style="border: 1px solid gray">
+@model List<ToDo>
+
+<div class="container">
+    <h1>Stephen Covey's Time Management Matrix</h1>
+
+    <div class="row">
+        <div class="col">
+            <h3>Urgent</h3>
+        </div>
+        <div class="col">
+            <h3>Not Urgent</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <h3>Important</h3>
+        </div>
+        <div class="col-5">
+            <h5>Quadrant 1</h5>
+            @RenderTasks(1)
+        </div>
+        <div class="col-5">
+            <h5>Quadrant 2</h5>
+            @RenderTasks(2)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <h3>Not Important</h3>
+        </div>
+        <div class="col-5">
+            <h5>Quadrant 3</h5>
+            @RenderTasks(3)
+        </div>
+        <div class="col-5">
+            <h5>Quadrant 4</h5>
+            @RenderTasks(4)
+        </div>
+    </div>
+</div>
+
+@* RenderTasks partial view to display tasks for a specific quadrant *@
+@helper RenderTasks(int quadrant)
+{
+    var tasks = Model.Where(t => t.Quadrant == quadrant && t.Completed == false).OrderBy(t => t.DueDate).ToList();
+
+    if (tasks.Any())
+    {
+        <ul>
+            @foreach (var task in tasks)
+            {
+                <li>
+                    @task.TaskName
+                    <!-- Add other task properties as needed -->
+                    <form asp-action="Complete" asp-route-taskId="@task.TaskId" method="post">
+                        <button type="submit">Mark as Completed</button>
+                    </form>
+                    <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No tasks in this quadrant.</p>
+    }
+}
+
+
+
+
+@* <div class="container" style="border: 1px solid gray">
     <div class="row">
 
         <div class="col" style="border: 1px solid gray">
@@ -45,11 +120,7 @@
             <h5>Quadrant 4</h5>
         </div>
     </div>
-</div>
-
-
-
-
+</div> *@
 
 
 @* @using Mission_08_GROUP_1_3.Models
