@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mission_08_GROUP_1_3.Models;
 
@@ -10,9 +11,11 @@ using Mission_08_GROUP_1_3.Models;
 namespace Mission_08_GROUP_1_3.Migrations
 {
     [DbContext(typeof(ToDoContext))]
-    partial class TaskListContextModelSnapshot : ModelSnapshot
+    [Migration("20240301210837_AddingCategory")]
+    partial class AddingCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");

@@ -6,10 +6,12 @@ namespace Mission_08_GROUP_1_3.Models
         private ToDoContext _context;
         public EFToDoRepository(ToDoContext context) 
         {
-            _context = context;     
+            _context = context;
         }
 
         public List<ToDo> ToDos => _context.ToDos.ToList();
+        public List<Category> Categories => _context.Categories.ToList();
+
 
 
         public void AddTask(ToDo task)
