@@ -26,7 +26,7 @@
         </div>
         <div class="col-5" style="border: 1px solid gray">
             <h5>Quadrant 1 (Important & Urgent)</h5>
-            @foreach (var task in Model.Where(t => t.Quadrant == "Quadrant I" && t.Completed == false))
+            @foreach (var task in Model.Where(t => t.Quadrant == "I" && t.Completed == false))
             {
                 <div class="card mb-3">
                     <div class="card-body">
@@ -43,7 +43,7 @@
         </div>
         <div class="col-5" style="border: 1px solid gray">
         <h5>Quadrant 2 (Important & Not Urgent) </h5>
-            @foreach (var task in Model.Where(t => t.Quadrant == "Quadrant II" && t.Completed == false))
+            @foreach (var task in Model.Where(t => t.Quadrant == "II" && t.Completed == false))
             {
                 <div class="card mb-3">
                     <div class="card-body">
@@ -66,7 +66,7 @@
         </div>
         <div class="col-5" style="border: 1px solid gray">
             <h5>Quadrant 3 (Not Important & Urgent)</h5>
-            @foreach (var task in Model.Where(t => t.Quadrant == "Quadrant III" && t.Completed == false))
+            @foreach (var task in Model.Where(t => t.Quadrant == "III" && t.Completed == false))
             {
                 <div class="card mb-3">
                     <div class="card-body">
@@ -83,7 +83,7 @@
         </div>
         <div class="col-5" style="border: 1px solid gray">
             <h5>Quadrant 4 (Not Important & Not Urgent)</h5>
-            @foreach (var task in Model.Where(t => t.Quadrant == "Quadrant IV" && t.Completed == false))
+            @foreach (var task in Model.Where(t => t.Quadrant == "IV" && t.Completed == false))
             {
                 <div class="card mb-3">
                     <div class="card-body">
