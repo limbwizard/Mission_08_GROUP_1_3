@@ -9,5 +9,7 @@ namespace Mission_08_GROUP_1_3.Models
         }
 
         public DbSet<ToDo> ToDos { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }

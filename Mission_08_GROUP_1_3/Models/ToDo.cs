@@ -14,7 +14,8 @@ namespace Mission_08_GROUP_1_3.Models
         public string Quadrant { get; set; }
         public bool? Completed { get; set; }
 
-        [ForeignKey("CategoryId")]
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }
