@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mission_08_GROUP_1_3.Models;
 using System.Linq;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Mission_08_GROUP_1_3.Controllers
 {
@@ -44,6 +45,10 @@ namespace Mission_08_GROUP_1_3.Controllers
 
                 // If the task doesn't exist, redirect to Index
                 if (task == null) return RedirectToAction("Index");
+
+                //ViewBag for Categories
+                ViewBag.Categories = new SelectList(_repo.Categories, "CategoryId", "Name");
+                return View(task);
 
                 // Pass the task to the view for editing
                 return View(task);
