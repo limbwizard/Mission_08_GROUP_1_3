@@ -1,8 +1,93 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿﻿@{
+    ViewData["Title"] = "Quadrants";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container" style="border: 1px solid gray">
+    <div class="row">
+
+        <div class="col" style="border: 1px solid gray">
+            <h1>Stephen Covey's Time Management Matrix</h1>
+        </div>
+
+    </div>
+
+    <div class="row" style="border: 1px solid gray">
+        <div class="col-2" style="border: 1px solid gray">
+        </div>
+        <div class="col-5" style="border: 1px solid gray">
+            <h3>Urgent</h3>
+        </div>
+        <div class="col-5" style="border: 1px solid gray">
+            <h3>Not Urgent</h3>
+        </div>
+    </div>
+
+    <div class="row" style="border: 1px solid gray">
+        <div class="col-2" style="border: 1px solid gray">
+            <h3>Important</h3>
+        </div>
+        <div class="col-5" style="border: 1px solid gray">
+            <h5>Quadrant 1</h5>
+        </div>
+        <div class="col-5" style="border: 1px solid gray">
+            <h5>Quadrant 2</h5>
+        </div>
+    </div>
+
+    <div class="row" style="border: 1px solid gray">
+        <div class="col-2" style="border: 1px solid gray">
+            <h3>Not Important</h3>
+        </div>
+        <div class="col-5" style="border: 1px solid gray">
+            <h5>Quadrant 3</h5>
+        </div>
+        <div class="col-5" style="border: 1px solid gray">
+            <h5>Quadrant 4</h5>
+        </div>
+    </div>
 </div>
+
+
+
+
+
+
+@* @using Mission_08_GROUP_1_3.Models
+
+@{
+    ViewData["Title"] = "Quadrants";
+}
+
+<div class="container" style="border: 1px solid gray">
+    <div class="row">
+        <div class="col" style="border: 1px solid gray">
+            <h1>Stephen Covey's Time Management Matrix</h1>
+        </div>
+    </div>
+
+    <!-- Add forms for each quadrant -->
+    @for (int quadrant = 1; quadrant <= 4; quadrant++)
+    {
+        <div class="row" style="border: 1px solid gray">
+            <div class="col-2" style="border: 1px solid gray">
+                <h3>@(quadrant % 2 == 1 ? "Urgent" : "Not Urgent")</h3>
+                <h3>@(quadrant <= 2 ? "Important" : "Not Important")</h3>
+            </div>
+            <div class="col-5" style="border: 1px solid gray">
+                @foreach (var task in Model.GetType().GetProperty($"Quadrant{quadrant}").GetValue(Model) as List<ToDo>)
+                {
+                    <form asp-action="EditTask" method="get" style="margin-bottom: 10px;">
+                        <input type="hidden" asp-for="@task.TaskId" />
+                        <span>@task.TaskDesc</span>
+                        <button type="submit">Edit</button>
+                        <a asp-action="Delete" asp-route-taskId="@task.TaskId">Delete</a>
+                    </form>
+                }
+            </div>
+            <div class="col-5" style="border: 1px solid gray">
+                <h5>Quadrant @(quadrant)</h5>
+            </div>
+        </div>
+    }
+</div>
+ *@
