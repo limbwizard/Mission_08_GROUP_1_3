@@ -1,78 +1,97 @@
-﻿﻿@{
-    ViewData["Title"] = "Quadrants";
+﻿@model List<Mission_08_GROUP_1_3.Models.ToDo>
+
+@{
+    ViewData["Title"] = "Tasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model List<ToDo>
-
-<div class="container">
-    <h1>Stephen Covey's Time Management Matrix</h1>
-
+<div class="container" style="border: 1px solid gray">
     <div class="row">
-        <div class="col">
+        <div class="col" style="border: 1px solid gray">
+            <h1>Stephen Covey's Time Management Matrix</h1>
+        </div>
+    </div>
+
+    <div class="row" style="border: 1px solid gray">
+        <div class="col-2" style="border: 1px solid gray">
             <h3>Urgent</h3>
         </div>
-        <div class="col">
-            <h3>Not Urgent</h3>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-2">
-            <h3>Important</h3>
-        </div>
-        <div class="col-5">
+        <div class="col-5" style="border: 1px solid gray">
             <h5>Quadrant 1</h5>
-            @RenderTasks(1)
+            @foreach (var task in Model.Where(t => t.Quadrant == "Quadrant I" && t.Completed == false))
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@task.TaskDesc</h5>
+                        <p class="card-text">Due Date: @task.DueDate</p>
+                        <p class="card-text">Category: @task.CategoryId</p>
+                        <a href="@Url.Action("Edit", "Home", new { taskId = task.TaskId })" class="btn btn-primary">Edit</a>
+                        <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            }
         </div>
-        <div class="col-5">
+        <div class="col-5" style="border: 1px solid gray">
             <h5>Quadrant 2</h5>
-            @RenderTasks(2)
+            @foreach (var task in Model.Where(t => t.Quadrant == "Quadrant II" && t.Completed == false))
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@task.TaskDesc</h5>
+                        <p class="card-text">Due Date: @task.DueDate</p>
+                        <p class="card-text">Category: @task.CategoryId</p>
+                        <a href="@Url.Action("Edit", "Home", new { taskId = task.TaskId })" class="btn btn-primary">Edit</a>
+                        <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-2">
+    <div class="row" style="border: 1px solid gray">
+        <div class="col-2" style="border: 1px solid gray">
             <h3>Not Important</h3>
         </div>
-        <div class="col-5">
+        <div class="col-5" style="border: 1px solid gray">
             <h5>Quadrant 3</h5>
-            @RenderTasks(3)
+            @foreach (var task in Model.Where(t => t.Quadrant == "Quadrant III" && t.Completed == false))
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@task.TaskDesc</h5>
+                        <p class="card-text">Due Date: @task.DueDate</p>
+                        <p class="card-text">Category: @task.CategoryId</p>
+                        <a href="@Url.Action("Edit", "Home", new { taskId = task.TaskId })" class="btn btn-primary">Edit</a>
+                        <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            }
         </div>
-        <div class="col-5">
+        <div class="col-5" style="border: 1px solid gray">
             <h5>Quadrant 4</h5>
-            @RenderTasks(4)
+            @foreach (var task in Model.Where(t => t.Quadrant == "Quadrant IV" && t.Completed == false))
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@task.TaskDesc</h5>
+                        <p class="card-text">Due Date: @task.DueDate</p>
+                        <p class="card-text">Category: @task.CategoryId</p>
+                        <a href="@Url.Action("Edit", "Home", new { taskId = task.TaskId })" class="btn btn-primary">Edit</a>
+                        <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>
-
-@* RenderTasks partial view to display tasks for a specific quadrant *@
-@helper RenderTasks(int quadrant)
-{
-    var tasks = Model.Where(t => t.Quadrant == quadrant && t.Completed == false).OrderBy(t => t.DueDate).ToList();
-
-    if (tasks.Any())
-    {
-        <ul>
-            @foreach (var task in tasks)
-            {
-                <li>
-                    @task.TaskName
-                    <!-- Add other task properties as needed -->
-                    <form asp-action="Complete" asp-route-taskId="@task.TaskId" method="post">
-                        <button type="submit">Mark as Completed</button>
-                    </form>
-                    <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post">
-                        <button type="submit">Delete</button>
-                    </form>
-                </li>
-            }
-        </ul>
-    }
-    else
-    {
-        <p>No tasks in this quadrant.</p>
-    }
-}
 
 
 
