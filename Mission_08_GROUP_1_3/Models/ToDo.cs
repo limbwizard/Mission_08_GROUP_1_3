@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission_08_GROUP_1_3.Models
 {
@@ -12,5 +13,8 @@ namespace Mission_08_GROUP_1_3.Models
         [Required]
         public string Quadrant { get; set; }
         public bool? Completed { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
     }
 }
