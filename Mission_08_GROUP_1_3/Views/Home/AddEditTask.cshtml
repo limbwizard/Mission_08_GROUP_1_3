@@ -1,0 +1,57 @@
+﻿@model Mission_08_GROUP_1_3.Models.ToDo
+@{
+    ViewData["Title"] = Model.TaskId == 0 ? "Add Task" : "Edit Task";
+}
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="AddEditTask">
+    <input type="hidden" asp-for="TaskId" />
+    <div class="form-group">
+        <label asp-for="TaskDesc" class="control-label"></label>
+        <input asp-for="TaskDesc" class="form-control" />
+        <span asp-validation-for="TaskDesc" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DueDate" class="control-label"></label>
+        <input asp-for="DueDate" class="form-control" />
+        <span asp-validation-for="DueDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Quadrant" class="control-label"></label>
+        <select asp-for="Quadrant" class="form-control">
+            <option value="">-- Select Quadrant --</option>
+            <option value="I">Important / Urgent</option>
+            <option value="II">Important / Not Urgent</option>
+            <option value="III">Not Important / Urgent</option>
+            <option value="IV">Not Important / Not Urgent</option>
+        </select>
+        <span asp-validation-for="Quadrant" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Category" class="control-label"></label>
+        <select asp-for="Category" class="form-control">
+            <option value="">-- Select Category --</option>
+            <option value="Home">Home</option>
+            <option value="School">School</option>
+            <option value="Work">Work</option>
+            <option value="Church">Church</option>
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="Completed" class="form-check-input" />
+        <label asp-for="Completed" class="form-check-label"></label>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
