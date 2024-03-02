@@ -47,7 +47,7 @@ namespace Mission_08_GROUP_1_3.Controllers
                 if (task == null) return RedirectToAction("Index");
 
                 //ViewBag for Categories
-                ViewBag.Categories = new SelectList(_repo.Categories, "CategoryId", " Name");
+                ViewBag.Categories = new SelectList(_repo.Categories, "CategoryId", "CategoryName");
                 return View(task);
 
                 // Pass the task to the view for editing
