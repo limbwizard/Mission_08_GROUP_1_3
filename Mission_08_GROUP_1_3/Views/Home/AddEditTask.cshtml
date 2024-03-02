@@ -15,14 +15,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="TaskDesc" class="control-label"></label>
+                    <label asp-for="TaskDesc" class="control-label">Task Description</label>
                     <input asp-for="TaskDesc" class="form-control" />
                     <span asp-validation-for="TaskDesc" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="DueDate" class="control-label"></label>
+                    <label asp-for="DueDate" class="control-label">Due Date</label>
                     <input type="date" asp-for="DueDate" class="form-control" />
                     <span asp-validation-for="DueDate" class="text-danger"></span>
                 </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="CategoryId" class="control-label"></label>
+                    <label asp-for="CategoryId" class="control-label">Category</label>
                     <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
                         <option value="">-- Select Category --</option>
                     </select>
