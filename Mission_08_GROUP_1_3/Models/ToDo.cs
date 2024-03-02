@@ -12,7 +12,7 @@ namespace Mission_08_GROUP_1_3.Models
         public string? DueDate { get; set; }
         [Required]
         public string Quadrant { get; set; }
-        public bool? Completed { get; set; }
+        public bool Completed { get; set; }
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
