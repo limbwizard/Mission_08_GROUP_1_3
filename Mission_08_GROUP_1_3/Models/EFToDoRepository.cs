@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace Mission_08_GROUP_1_3.Models
 {
     public class EFToDoRepository : IToDoRepository
@@ -11,8 +13,10 @@ namespace Mission_08_GROUP_1_3.Models
 
         public List<ToDo> ToDos => _context.ToDos.ToList();
         public List<Category> Categories => _context.Categories.ToList();
-
-
+        public List<ToDo> GetTasksWithCategories()
+        {
+            return _context.ToDos.Include(t => t.Category).ToList();
+        }
 
         public void AddTask(ToDo task)
         {

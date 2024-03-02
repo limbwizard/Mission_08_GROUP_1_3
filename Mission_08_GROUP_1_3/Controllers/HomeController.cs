@@ -22,24 +22,28 @@ namespace Mission_08_GROUP_1_3.Controllers
         public IActionResult Index()
         {
             // Use LINQ to get all non-completed tasks and order them by DueDate if needed
-            var tasks = _repo.ToDos.Where(t => t.Completed == false).OrderBy(t => t.DueDate).ToList();
+            var tasks = _repo.ToDos
+                .Where(t => t.Completed == false)
+                .OrderBy(t => t.DueDate)
+                .ToList();
+
+            // Eager load the Category for each task
+            tasks.ForEach(t => t.Category = _repo.Categories.FirstOrDefault(c => c.CategoryId == t.CategoryId));
 
             // Pass the tasks to the view
             return View(tasks);
         }
 
+
         // This action method handles both adding and editing tasks
         // GET: Shows the form for adding or editing a task
         public IActionResult AddEditTask(int taskId = 0)
-
         {
-            // Populate the ViewBag.Categories for the dropdown list regardless of adding or editing
-            ViewBag.Categories = new SelectList(_repo.Categories, "CategoryId", "CategoryName");
-
             // If taskId is 0, we understand it's a new task
             if (taskId == 0)
             {
                 // Create a new task and pass it to the view
+                ViewBag.Categories = new SelectList(_repo.Categories, "CategoryId", "CategoryName");
                 return View(new ToDo());
             }
             else
@@ -50,9 +54,8 @@ namespace Mission_08_GROUP_1_3.Controllers
                 // If the task doesn't exist, redirect to Index
                 if (task == null) return RedirectToAction("Index");
 
-                //ViewBag for Categories
+                // Repopulate ViewBag.Categories for editing
                 ViewBag.Categories = new SelectList(_repo.Categories, "CategoryId", "CategoryName");
-                return View(task);
 
                 // Pass the task to the view for editing
                 return View(task);
