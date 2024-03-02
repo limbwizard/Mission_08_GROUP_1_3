@@ -11,6 +11,7 @@
 <div class="container mt-3">
     <h2>@ViewData["Title"]</h2>
     <form asp-action="AddEditTask">
+        <input type="hidden" asp-for="TaskId" />
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">

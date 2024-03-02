@@ -31,7 +31,11 @@ namespace Mission_08_GROUP_1_3.Controllers
         // This action method handles both adding and editing tasks
         // GET: Shows the form for adding or editing a task
         public IActionResult AddEditTask(int taskId = 0)
+
         {
+            // Populate the ViewBag.Categories for the dropdown list regardless of adding or editing
+            ViewBag.Categories = new SelectList(_repo.Categories, "CategoryId", "CategoryName");
+
             // If taskId is 0, we understand it's a new task
             if (taskId == 0)
             {
@@ -55,7 +59,6 @@ namespace Mission_08_GROUP_1_3.Controllers
             }
         }
 
-        // POST: Handles the submission of the form for adding or editing tasks
         [HttpPost]
         public IActionResult AddEditTask(ToDo task)
         {
@@ -75,6 +78,9 @@ namespace Mission_08_GROUP_1_3.Controllers
                 // Redirect to the Index action after saving
                 return RedirectToAction("Index");
             }
+
+            // Repopulate ViewBag.Categories if returning to the view because the model state is not valid
+            ViewBag.Categories = new SelectList(_repo.Categories, "CategoryId", "CategoryName");
 
             // If the model state is not valid, return to the view with the current task data
             return View(task);
