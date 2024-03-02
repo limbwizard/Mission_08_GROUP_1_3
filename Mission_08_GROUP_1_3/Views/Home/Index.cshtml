@@ -33,7 +33,7 @@
                         <h5 class="card-title">@task.TaskDesc</h5>
                         <p class="card-text">Due Date: @task.DueDate</p>
                         <p class="card-text">Category: @task.CategoryId</p>
-                        <a asp-action="Edit" asp-controller="Home" asp-route-taskId="@task.TaskId" class="btn btn-primary">Edit</a>
+                        <a asp-action="AddEditTask" asp-controller="Home" asp-route-taskId="@task.TaskId" class="btn btn-primary">Edit</a>
                         <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post" class="d-inline">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
@@ -50,7 +50,7 @@
                         <h5 class="card-title">@task.TaskDesc</h5>
                         <p class="card-text">Due Date: @task.DueDate</p>
                         <p class="card-text">Category: @task.CategoryId</p>
-                        <a asp-action="Edit" asp-controller="Home" asp-route-taskId="@task.TaskId" class="btn btn-primary">Edit</a>
+                        <a asp-action="AddEditTask" asp-controller="Home" asp-route-taskId="@task.TaskId" class="btn btn-primary">Edit</a>
                         <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post" class="d-inline">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
@@ -73,7 +73,7 @@
                         <h5 class="card-title">@task.TaskDesc</h5>
                         <p class="card-text">Due Date: @task.DueDate</p>
                         <p class="card-text">Category: @task.CategoryId</p>
-                        <a asp-action="Edit" asp-controller="Home" asp-route-taskId="@task.TaskId" class="btn btn-primary">Edit</a>
+                        <a asp-action="AddEditTask" asp-controller="Home" asp-route-taskId="@task.TaskId" class="btn btn-primary">Edit</a>
                         <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post" class="d-inline">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
@@ -90,7 +90,7 @@
                         <h5 class="card-title">@task.TaskDesc</h5>
                         <p class="card-text">Due Date: @task.DueDate</p>
                         <p class="card-text">Category: @task.CategoryId</p>
-                        <a asp-action="Edit" asp-controller="Home" asp-route-taskId="@task.TaskId" class="btn btn-primary">Edit</a>
+                        <a asp-action="AddEditTask" asp-controller="Home" asp-route-taskId="@task.TaskId" class="btn btn-primary">Edit</a>
                         <form asp-action="Delete" asp-route-taskId="@task.TaskId" method="post" class="d-inline">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
